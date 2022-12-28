@@ -1,11 +1,13 @@
 import React from 'react';
 import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../images/logo.png";
+import "./Header.css";
+
 
 const Header = () => {
   const options = {
     burgerColorHover: "#eb4034",
-    logo,
+    logo: logo,
     logoWidth: "20vmax",
     navColor1: "white",
     logoHoverSize: "10px",
@@ -33,11 +35,11 @@ const Header = () => {
     profileIconColorHover: "#eb4034",
     searchIconColorHover: "#eb4034",
     cartIconColorHover: "#eb4034",
-    cartIconMargin: "1vmax",
+    cartIconMargin: "1vmax"
   };
 
   return (
-    <ReactNavbar {...options}/>
+    <ReactNavbar className="navbar" {...options}/>
   )
 }
 

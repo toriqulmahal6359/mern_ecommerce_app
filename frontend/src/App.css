@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+/* Chrome, Opera, Edge, Safari */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox, IE */
+input[type="number"]{
+    -moz-appearance: textfield;
+}
+
+.redColor{
+    color: red;
+}
+.greenColor{
+    color: green;
+}

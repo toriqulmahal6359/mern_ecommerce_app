@@ -6,19 +6,19 @@ import appStore from "../../../images/appStore.png";
 const Footer = () => {
   return (
     <footer id="footer">
-        <div class="leftFooter">
+        <div className="leftFooter">
             <h4>Download Our App</h4>
             <p>Download App For iOS and Android Phone</p>
             <img src={playStore} alt='playStore'></img>
             <img src={appStore} alt='appStore'></img>
         </div>
-        <div class="midFooter">
+        <div className="midFooter">
             <h1>ECOMMERCE</h1>
             <p>High Quality is Our First Priority</p>
 
             <p>Copyright 2021 &copy; Toriqul Mahal</p>
         </div>
-        <div class="rightFooter">
+        <div className="rightFooter">
             <h4>Follow Us</h4>
             <a href='javascript:void(0)'>Facebook</a>
             <a href='javascript:void(0)'>Youtube</a>

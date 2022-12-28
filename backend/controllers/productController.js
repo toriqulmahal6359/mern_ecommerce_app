@@ -7,14 +7,16 @@ const Product = require("../models/Product");
 
 exports.getAllProducts = catchAsyncErrors(
     async(req, res) => {
-        const resultPerpage = 1;
+        const resultPerpage = 8;
         const productCount = await Product.countDocuments();
 
         const apiFeature = new ApiFeature(Product.find(), req.query).search().filter().pagination(resultPerpage);
         const products = await apiFeature.query;
         return res.status(200).json({
             success: true,
-            products
+            products,
+            productCount,
+            resultPerpage
         });
     }
 ) 
@@ -72,8 +74,7 @@ exports.getProductDetails = catchAsyncErrors(
     
         res.status(200).json({
             success: true,
-            product,
-            productCount
+            product
         })
     }
 ) 
