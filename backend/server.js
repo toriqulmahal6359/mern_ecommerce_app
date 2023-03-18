@@ -30,7 +30,7 @@ cloudinary.config({
 
 const PORT = process.env.PORT || 3100;
 const hostname = 'mahal.com'; 
-const server = app.listen(PORT, hostname, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server is Running from port http://${hostname}:${process.env.PORT}`);
 });
 
