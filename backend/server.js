@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config({path: "backend/config/.env"});
 
 const connectDatabase = require('./config/database');
+const cloudinary = require('cloudinary');
 
 //Handling Uncaught Exception
 process.on('uncaughtException', (err) => {
@@ -21,9 +22,16 @@ app.get('/', async(req, res) => {
 //Connecting the Database
 connectDatabase();
 
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+})
+
 const PORT = process.env.PORT || 3100;
-const server = app.listen(PORT, () => {
-    console.log(`Server is Running from port ${process.env.PORT}`);
+const hostname = 'mahal.com'; 
+const server = app.listen(PORT, hostname, () => {
+    console.log(`Server is Running from port http://${hostname}:${process.env.PORT}`);
 });
 
 
