@@ -2,11 +2,11 @@
   "name": "ecommerce_app",
   "version": "1.0.0",
   "description": "Simple Ecommerce app using Javascript",
-  "main": "backend/server.js",
+  "main": "backend/api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node backend/server.js",
-    "dev": "nodemon backend/server.js"
+    "serve": "node backend/api/index.js",
+    "dev": "nodemon backend/api/index.js"
   },
   "author": "MAHAL",
   "license": "ISC",
