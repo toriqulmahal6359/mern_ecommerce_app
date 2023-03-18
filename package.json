@@ -5,8 +5,8 @@
   "main": "backend/api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node backend/api/index.js",
-    "dev": "nodemon backend/api/index.js"
+    "serve": "node backend/index.js",
+    "dev": "nodemon backend/index.js"
   },
   "author": "MAHAL",
   "license": "ISC",

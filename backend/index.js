@@ -1,9 +1,9 @@
-const app = require("../app");
+const app = require("./app");
 const dotenv = require('dotenv');
 
 dotenv.config({path: "backend/config/.env"});
 
-const connectDatabase = require("../config/database");
+const connectDatabase = require("./config/database");
 const cloudinary = require('cloudinary');
 
 //Handling Uncaught Exception
