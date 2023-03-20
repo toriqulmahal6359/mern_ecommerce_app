@@ -56,7 +56,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://mahal.com:3100",
+  "proxy": "https://mern-ecommerce-app-backend.vercel.app",
   "devDependencies": {
     "eslint-config-react-app": "^7.0.1"
   }
