@@ -1,58 +1,73 @@
-import React, { useRef, useState } from 'react';
-import axios from 'axios';
+import React, { Fragment, useEffect } from 'react';
+import "./payment.css"
+import MetaData from "../layout/MetaData";
+import CheckoutSteps from "../Cart/CheckoutSteps";
+import PaymentIcon from '@material-ui/icons/Payment';
+import { useSelector, useDispatch } from 'react-redux';
+import { createOrder, clearErrors } from "../../actions/orderAction";
+import Loader from "../layout/Loader/Loader";
+// import { useLocation, useNavigate } from 'react-router-dom';
+import { useAlert } from 'react-alert';
 
-const Payment = () => {
-  const [amount, setAmount] = useState('');
-  const [currency, setCurrency] = useState('BDT');
-  const [transactionId, setTransactionId] = useState('');
 
-  const handleAmountChange = (event) => {
-    setAmount(event.target.value);
+const Payment = ({ payment }) => {
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  // const navigate = useNavigate();
+  // const location = useLocation();
+
+  const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
+  
+  const { shippingInfo, cartItems } = useSelector((state) => state.cart);
+  const { loading } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.newOrder);
+
+  const orderItems = cartItems.map((item) => {
+      return {
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        image: item.image,
+        product: item.product,
+      };
+  });
+
+  const handlePayment = async () => {
+    const order = {
+      shippingInfo,
+      orderItems,
+      itemsPrice: orderInfo.subtotal,
+      taxPrice: orderInfo.taxPrice,
+      shippingPrice: orderInfo.shippingPrice,
+      totalPrice: orderInfo.totalPrice,
+    }
+    console.log(order);
+    dispatch(createOrder(order));
   };
 
-  const handleCurrencyChange = (event) => {
-    setCurrency(event.target.value);
-  };
-
-  const handleTransactionIdChange = (event) => {
-    setTransactionId(event.target.value);
-  };
-
-  const handlePaymentSubmit = async (event) => {
-    event.preventDefault();
-    const response = await fetch('http://mahal.com:3100/api/v1/process/payment', {
-      method: '',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        amount: amount,
-        currency: currency,
-        transactionId: transactionId,
-      }),
-    });
-    // handle the response from the server
-  };
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+  }, [dispatch, error, alert]);
+  
 
   return (
-    <form onSubmit={handlePaymentSubmit}>
-      <label>
-        Amount:
-        <input type="text" value={amount} onChange={handleAmountChange} />
-      </label>
-      <label>
-        Currency:
-        <select value={currency} onChange={handleCurrencyChange}>
-          <option value="BDT">BDT</option>
-          <option value="USD">USD</option>
-        </select>
-      </label>
-      <label>
-        Transaction ID:
-        <input type="text" value={transactionId} onChange={handleTransactionIdChange} />
-      </label>
-      <button type="submit">Pay with SSLCommerz</button>
-    </form>
+    <div>
+      { loading ? ( <Loader /> ) : (
+        <Fragment>
+          <MetaData title="Payment" />
+          <CheckoutSteps activeStep={2} />
+          <div className="paymentContainer">
+            <PaymentIcon />
+            <button onClick={handlePayment} disabled={loading} className='paymentBtn'>
+                Pay with SSLCommerz
+            </button>
+          </div>
+        </Fragment>
+      )}
+    </div>
   );
 };
 

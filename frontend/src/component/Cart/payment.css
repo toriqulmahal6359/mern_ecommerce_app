@@ -1,0 +1,42 @@
+.paymentContainer {
+    margin: auto;
+    text-align: center;
+    padding: 10vmax;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.paymentBtn {
+    border: none;
+    background-color: tomato;
+    color: white;
+    font: 300 0.9vmax "Roboto";
+    width: 50%;
+    padding: 0.8vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+    outline: none;
+    border-radius: 2vmax;
+}
+  
+.paymentBtn:hover {
+    background-color: rgb(179, 66, 46);
+}
+
+.paymentContainer > svg {
+    font-size: 7vmax;
+    color: tomato;
+}
+
+@media screen and (max-width: 600px) {
+    .paymentBtn {
+        font: 300 4vw "Roboto";
+        padding: 4vw;
+    }
+    .paymentContainer > svg {
+        font-size: 20vw;
+    }
+    
+}

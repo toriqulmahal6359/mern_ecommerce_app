@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import MetaData from '../layout/MetaData';
 import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
-import axios from "axios";
 
 const ConfirmOrder = () => {
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
@@ -18,20 +17,13 @@ const ConfirmOrder = () => {
     const totalPrice = subtotal + tax + shippingCharges;
     const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
 
-    const proceedToPayment = async() => {
+    const proceedToPayment = () => {
         const data = {
             subtotal, shippingCharges, tax, totalPrice, 
         }
         sessionStorage.setItem("orderInfo", JSON.stringify(data));
-        const config = {
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-            },
-        };
-        const response = await axios.post('http://mahal.com:3100/api/v1/process/payment', config);
-        console.log(response);
-        // navigate("/process/payment");
+        console.log(data);
+        navigate("/payment/confirm");
     }
 
   return (

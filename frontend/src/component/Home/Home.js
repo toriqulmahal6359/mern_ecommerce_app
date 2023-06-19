@@ -19,7 +19,7 @@ const product = {
 const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
-  const { loading, error, products, productsCount } = useSelector((state) => state.products);
+  const { loading, error, recentProducts, featuredProducts, productsCount } = useSelector((state) => state.products);
   
   useEffect(() => {
     if(error){
@@ -46,9 +46,15 @@ const Home = () => {
                     </button>
                 </a>
             </div>
+            <h2 className='homeHeading'>Recently Added</h2>
+              <div className='container' id='container'>
+                { recentProducts && recentProducts.map((product) => (
+                      <ProductCard product={product} />
+                ))}
+              </div>
             <h2 className='homeHeading'>Featured Products</h2>
               <div className='container' id='container'>
-                { products && products.map((product) => (
+                { featuredProducts && featuredProducts.map((product) => (
                       <ProductCard product={product} />
                 ))}
               </div>

@@ -21,10 +21,25 @@ const UserOptions = ({ user }) => {
 
   const { cartItems } = useSelector((state) => state.cart);
   
+  // const options = [
+  //   { icon: <ListAltIcon />, name: "Orders", func: orders },
+  //   { icon: <PersonIcon />, name: "Profile", func: account },
+  //   { icon: <ShoppingCartIcon style={{ color: cartItems.length > 0 ? 'tomato' : 'unset' }} />, name: `cart(${cartItems.length})`, func: cart },
+  //   { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
+  // ];
+
   const options = [
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
-    { icon: <ShoppingCartIcon style={{ color: cartItems.length > 0 ? 'tomato' : 'unset' }} />, name: `cart(${cartItems.length})`, func: cart },
+    {
+      icon: (
+        <ShoppingCartIcon className='shoppingcart'
+          style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
+        />
+      ),
+      name: `Cart(${cartItems.length})`,
+      func: cart,
+    },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
@@ -33,7 +48,7 @@ const UserOptions = ({ user }) => {
   };
 
   function dashboard(){
-    navigate("/dashboard");
+    navigate("/admin/dashboard");
   }
 
   function orders(){
@@ -64,7 +79,7 @@ const UserOptions = ({ user }) => {
         direction="down"
         className='speedDial'
 
-        icon={<img className='speedDialIcon' src={user.avatar.url ? user.avatar.url : "/profileimage.jpg"} alt="Profile" />}
+        icon={<img className='speedDialIcon' src={user.avatar.url ? user.avatar.url : "./profileimage.jpg"} alt="P" />}
     >
         { options.map((item) => (
             <SpeedDialAction key={item.name} icon={item.icon} tooltipTitle={item.name} tooltipOpen={window.innerWidth <= 600 ? true : false} onClick={item.func}></SpeedDialAction>

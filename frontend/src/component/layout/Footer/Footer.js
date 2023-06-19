@@ -4,19 +4,20 @@ import playStore from "../../../images/playStore.png";
 import appStore from "../../../images/appStore.png"; 
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <footer id="footer">
         <div className="leftFooter">
             <h4>Download Our App</h4>
-            <p>Download App For iOS and Android Phone</p>
+            <p>Download App For iOS and Android Phone</p><br />
             <img src={playStore} alt='playStore'></img>
             <img src={appStore} alt='appStore'></img>
         </div>
         <div className="midFooter">
             <h1>ECOMMERCE</h1>
-            <p>High Quality is Our First Priority</p>
+            <span>High Quality is Our First Priority</span>
 
-            <p>Copyright 2021 &copy; Toriqul Mahal</p>
+            <p>Copyright {currentYear} &copy; at <strong>Md.Toriqul Islam Khan Mahal</strong>.<br />All Rights Reserved</p>
         </div>
         <div className="rightFooter">
             <h4>Follow Us</h4>

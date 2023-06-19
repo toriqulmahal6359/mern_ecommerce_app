@@ -1,10 +1,13 @@
 const app = require("./app");
 const dotenv = require('dotenv');
-
-dotenv.config({path: "backend/config/.env"});
-
 const connectDatabase = require("./config/database");
 const cloudinary = require('cloudinary');
+
+// Config
+// dotenv.config({path: "backend/config/.env"});
+if (process.env.NODE_ENV !== "PRODUCTION") {
+    require("dotenv").config({ path: "backend/config/.env" });
+}
 
 //Handling Uncaught Exception
 process.on('uncaughtException', (err) => {
@@ -34,7 +37,6 @@ const server = app.listen(PORT, () => {
     console.log(`Server is Running from port http://${hostname}:${process.env.PORT}`);
 });
 
-
 //Unhandled Error Rejection
 process.on('unhandledRejection', (err) => {
     console.log(`Error: ${err.message}`);
@@ -44,38 +46,3 @@ process.on('unhandledRejection', (err) => {
         process.exit(1);
     });
 });
-
-
-
-
-
-// const user = {
-//     firstname: "Toriqul",
-//     lastname: "Mahal",
-//     details:[
-//         {
-//             age: 25,
-//             dateOfBirth: "25/10/1998",
-//             religion: "Muslim"
-//         },
-//         {
-//             occupation: "Job-seeker"
-//         }
-//     ]
-// }
-
-    
-//     // console.log(Object.keys(user));
-//     Object.keys(user).forEach(key => {
-//         // console.log(user[key]);
-//         let n = user[key].length; 
-//         let arr = [];
-//         for(let i = 0; i < n; i++){
-//             // console.log(user[key][i]);
-//             let p = [user[key][i]];
-//             // console.log(p); 
-//             // console.log(p[i]);
-//             arr = arr.concat(p);
-//             console.log(arr);
-//         } 
-//     })
