@@ -2,6 +2,7 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const ApiFeature = require("../utils/ApiFeature");
 const ErrorHandler = require("../utils/ErrorHandler");
 const Product = require("../models/Product");
+const cloudinary = require("cloudinary");
 
 //User Section
 
@@ -170,13 +171,13 @@ exports.createProductReview = catchAsyncErrors(
         };
 
         const product = await Product.findById(productId);
-        const isReviewed = product.reviews.find(rev => rev.user.toString() === req.user._id.toString());
+        const isReviewed = product.reviews.find((rev) => rev.user.toString() === req.user._id.toString());
 
         if(isReviewed){
-            product.reviews.forEach(rev => {
+            product.reviews.forEach((rev) => {
                 if(rev.user.toString() === req.user._id.toString())
-                    rev.rating = rating,
-                    rev.comment = comment
+                    (rev.rating = rating),
+                    (rev.comment = comment)
             });
         }else{
             product.reviews.push(review);
@@ -184,7 +185,7 @@ exports.createProductReview = catchAsyncErrors(
         }
 
         let avg = 0;
-        product.ratings = product.reviews.forEach(rev => {
+        product.ratings = product.reviews.forEach((rev) => {
             avg += rev.rating
         }) 
 

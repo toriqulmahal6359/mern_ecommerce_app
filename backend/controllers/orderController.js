@@ -15,7 +15,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
         total_amount: totalPrice,
         currency: 'BDT',
         tran_id: tran_id,
-        success_url: `${process.env.FRONTEND_PROTOCOL}://${process.env.FRONTEND_URL}/api/v1/order/success/${tran_id}`,
+        success_url: `${process.env.HOST}:${process.env.PORT}/api/v1/order/success/${tran_id}`,
         // success_url: `http://${BACKEND_HOST}:${BACKEND_PORT}/success`,
         fail_url: `${process.env.FRONTEND_PROTOCOL}://${process.env.FRONTEND_URL}/process/payment/fail`,
         cancel_url: `${process.env.FRONTEND_PROTOCOL}://${process.env.FRONTEND_URL}/process/payment/cancel`,
@@ -50,7 +50,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
      
     console.log(data);
 
-  const sslcommer = new SslCommerzPayment(process.env.STORE_ID, process.env.STORE_PASSWORD, true) //true for live default false for sandbox
+  const sslcommer = new SslCommerzPayment(process.env.STORE_ID, process.env.STORE_PASSWORD, false) //true for live default false for sandbox
   sslcommer.init(data).then(async (apiResponse) => {
     //process the response that got from sslcommerz 
     //https://developer.sslcommerz.com/doc/v4/#returned-parameters

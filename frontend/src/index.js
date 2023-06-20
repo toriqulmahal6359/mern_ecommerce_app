@@ -8,11 +8,13 @@ import AlertTemplate from "react-alert-template-basic"
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 const options = {
   timeout: 5000,
   position: positions.BOTTOM_RIGHT,
   transition: transitions.SCALE
 }
+
 root.render(
   <Provider store={store}>
     <AlertProvider template={AlertTemplate} {...options}>

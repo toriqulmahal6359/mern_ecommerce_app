@@ -61,7 +61,7 @@ const ProductDetails = ({ match }) => {
 
     myForm.set("rating", rating);
     myForm.set("comment", comment);
-    myForm.set("productid", id);
+    myForm.set("productId", id);
 
     dispatch(newReview(myForm));
     setOpen(false);
