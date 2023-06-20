@@ -30,9 +30,9 @@ const Home = () => {
   }, [dispatch, error, alert]) 
 
   return (
-    // <Fragment>
-    //   {loading ? (<Loader />) : 
-    //     (
+    <Fragment>
+      {loading ? (<Loader />) : 
+        (
           <Fragment>
             <MetaData title="Ecommerce Site Project" />
             <div className='banner'>
@@ -59,9 +59,9 @@ const Home = () => {
                 ))}
               </div>
           </Fragment>
-    //     )
-    //   }
-    // </Fragment>
+        )
+      }
+    </Fragment>
    
   )
 }

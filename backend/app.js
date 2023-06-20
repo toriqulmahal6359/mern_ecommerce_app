@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const path = require('path');
 
 //CORS
 app.options('*', cors());

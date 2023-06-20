@@ -1,3 +1,4 @@
+const express = require('express');
 const app = require("./app");
 const dotenv = require('dotenv');
 const connectDatabase = require("./config/database");
@@ -31,12 +32,6 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
-const PORT = process.env.PORT || 3100;
-const hostname = 'mahal.com'; 
-const server = app.listen(PORT, () => {
-    console.log(`Server is Running from port http://${hostname}:${process.env.PORT}`);
-});
-
 //Unhandled Error Rejection
 process.on('unhandledRejection', (err) => {
     console.log(`Error: ${err.message}`);
@@ -45,4 +40,19 @@ process.on('unhandledRejection', (err) => {
     server.close(()=> {
         process.exit(1);
     });
+});
+
+if(process.env.NODE_ENV == 'PRODUCTION'){
+    const path = require('path');
+
+    app.get('/', (req, res) => {
+      app.use(express.static(path.resolve(__dirname, 'frontend', 'build')))
+      res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    })
+}
+
+const PORT = process.env.PORT || 3100;
+const hostname = 'mahal.com'; 
+const server = app.listen(PORT, () => {
+    console.log(`Server is Running from port http://${hostname}:${process.env.PORT}`);
 });
