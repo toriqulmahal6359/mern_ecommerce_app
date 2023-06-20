@@ -7,7 +7,7 @@ import { positions, transitions, Provider as AlertProvider} from "react-alert"
 import AlertTemplate from "react-alert-template-basic"
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const options = {
   timeout: 5000,
@@ -15,12 +15,19 @@ const options = {
   transition: transitions.SCALE
 }
 
-root.render(
+// root.render(
+//   <Provider store={store}>
+//     <AlertProvider template={AlertTemplate} {...options}>
+//         <App />
+//     </AlertProvider>
+//   </Provider>
+// );
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <AlertProvider template={AlertTemplate} {...options}>
         <App />
     </AlertProvider>
   </Provider>
-);
-
+)
 
