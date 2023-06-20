@@ -51,10 +51,10 @@ app.use('/api/v1', order);
 
 // Middlewire for File Handling and Storing
 // app.use(express.static('public'));
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
-});
+// app.use(express.static(path.join(__dirname, "../frontend/build")));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+// });
 
 //Middleware For errors
 const errorMiddleware = require("./middlewares/error");
