@@ -2,10 +2,11 @@
   "name": "ecommerce_app",
   "version": "1.0.0",
   "description": "Simple Ecommerce app using Javascript",
-  "main": "backend/api/index.js",
+  "main": "backend/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd backend && npm install  && cd ../frontend && npm install && npm run build",
     "start": "node backend/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix frontend",
     "serve": "node backend/index.js",
     "dev": "nodemon backend/index.js"
