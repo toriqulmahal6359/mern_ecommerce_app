@@ -17,11 +17,11 @@ process.on('uncaughtException', (err) => {
     process.exit(1);
 }); 
 
-app.get('/', async(req, res) => {
-    return res.status(200).json({
-        message: "I'm A Ecommerce Site to be built"
-    });
-});
+// app.get('/', async(req, res) => {
+//     return res.status(200).json({
+//         message: "I'm A Ecommerce Site to be built"
+//     });
+// });
 
 //Connecting the Database
 connectDatabase();
