@@ -42,7 +42,7 @@ process.on('unhandledRejection', (err) => {
     });
 });
 
-if(process.env.NODE_ENV == 'PRODUCTION'){
+if(process.env.NODE_ENV === 'PRODUCTION'){
     const path = require('path');
 
     // app.get('/', (req, res) => {
