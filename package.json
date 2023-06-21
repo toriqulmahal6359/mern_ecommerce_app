@@ -8,7 +8,6 @@
     "start": "node backend/index.js",
     "serve": "node backend/index.js",
     "dev": "nodemon backend/index.js",
-    "build": "node backend/index.js"
   },
   "author": "MAHAL",
   "license": "ISC",
