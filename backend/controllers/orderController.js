@@ -15,7 +15,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
         total_amount: totalPrice,
         currency: 'BDT',
         tran_id: tran_id,
-        success_url: `/api/v1/order/success/${tran_id}`,
+        success_url: `${process.env.SERVER_URL}/api/v1/order/success/${tran_id}`,
         // success_url: `http://${BACKEND_HOST}:${BACKEND_PORT}/success`,
         fail_url: `${process.env.SERVER_URL}/process/payment/fail`,
         cancel_url: `${process.env.SERVER_URL}/process/payment/cancel`,
@@ -91,7 +91,7 @@ exports.successOrder = catchAsyncErrors(async (req, res, next) => {
 
     // console.log(success.modifiedCount);
     if(success.modifiedCount > 0){
-        const successUrl = `${process.env.FRONTEND_PROTOCOL}://${process.env.FRONTEND_URL}/order/success/${req.params.tran_id}`;
+        const successUrl = `${process.env.FRONTEND_URL}/order/success/${req.params.tran_id}`;
         res.redirect(successUrl);
         // res.send({ url : successUrl });
     }
