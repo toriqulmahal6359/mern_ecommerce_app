@@ -50,7 +50,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
      
     console.log(data);
 
-  const sslcommer = new SslCommerzPayment(process.env.STORE_ID, process.env.STORE_PASSWORD, true) //true for live default false for sandbox
+  const sslcommer = new SslCommerzPayment(process.env.STORE_ID, process.env.STORE_PASSWORD, false) //true for live default false for sandbox
   sslcommer.init(data).then(async (apiResponse) => {
     //process the response that got from sslcommerz 
     //https://developer.sslcommerz.com/doc/v4/#returned-parameters
