@@ -20,7 +20,7 @@ import { ALL_PRODUCT_SUCCESS, ALL_PRODUCT_FAIL, ALL_PRODUCT_REQUEST,ADMIN_PRODUC
     DELETE_REVIEW_SUCCESS,
     DELETE_REVIEW_FAIL, CLEAR_ERRORS } from "../constants/productConstants";
 
-export const getproduct = (keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0) => async(dispatch) => {
+export const getproduct = (keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0, selectedGenres = []) => async(dispatch) => {
     try{
         dispatch({
             type: ALL_PRODUCT_REQUEST,
@@ -31,12 +31,18 @@ export const getproduct = (keyword = "", currentPage = 1, price = [0, 25000], ca
         if(category){
             link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
         }
-        const { data } = await axios.get(link);
 
+        if(selectedGenres.length > 0){
+          const genresQueryParam = selectedGenres.join(",");
+          link += `&genres=${genresQueryParam}`;
+        }
+
+        const { data } = await axios.get(link);
         dispatch({
             type: ALL_PRODUCT_SUCCESS,
             payload: data
         });
+          
     }catch(error){
         dispatch({
             type: ALL_PRODUCT_FAIL,

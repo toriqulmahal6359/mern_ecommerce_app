@@ -12,6 +12,7 @@ const productSchema = new mongoose.Schema({
         }
     ],
     category: {type: String, required: [true, "Please Enter Product Category"]},
+    genre: { type: [String], required: true },
     stock: {type: Number, required: [true, "Please Enter Product Stock"], maxLength: [4, 'Stock cannot be exceed 4 characters'], default: 1},
     numOfReviews: {type: Number, default: 0},
     reviews: [

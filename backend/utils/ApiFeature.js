@@ -32,6 +32,23 @@ class ApiFeature {
         return this;
     }
 
+    // filter genre
+    // multiple(){
+    //     const queryObj = { ...this.queryString };
+    //     const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    //     excludedFields.forEach((el) => delete queryObj[el]);
+
+    //     // Add genre filter if genres are present in the request query
+    //     if (queryObj.genres) {
+    //     const genres = queryObj.genres.split(',');
+    //     this.query.find({ genre: { $in: genres } });
+    //     delete queryObj.genres
+    //     }
+
+    //     this.query = this.query.find(queryObj);
+    //     return this;
+    // }
+
     pagination(resultsPerPage){
         const currentPage = Number(this.queryStr.page) || 1;
         //Skipping products from current page to next page

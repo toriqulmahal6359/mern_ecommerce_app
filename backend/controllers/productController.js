@@ -14,6 +14,17 @@ exports.getAllProducts = catchAsyncErrors(
         const featuredProducts = await Product.find().sort({ ratings: -1 }).limit(8);
         const apiFeature = new ApiFeature(Product.find(), req.query).search().filter();
 
+        // Add genre filter if genres are present in the request query
+        // if (req.query.genres) {
+        //     const genres = req.query.genres.split(",");
+        //     apiFeature.match({ genre: { $in: genres } });
+        // }
+
+        if (req.query.genres) {
+            const genres = req.query.genres.split(",");
+            apiFeature.query.where("genre").in(genres);
+          }
+
         const products = await apiFeature.query;
         let filteredProductsCount = products.length;
         apiFeature.pagination(resultPerpage);
@@ -56,7 +67,14 @@ exports.createProduct = catchAsyncErrors(
         req.body.images = imagesLinks;
         req.body.user = req.user.id;
 
-        const product = await Product.create(req.body);
+        const { name, description, price, category, stock, genre } = req.body;
+
+        const parsedGenre = req.body.genre;
+        const product = await Product.create({
+            name, description, price, category, genre: parsedGenre, stock, images: imagesLinks, user: req.user.id
+        });
+
+        // const product = await Product.create(req.body);
         res.status(200).json({
             success: true,
             product
@@ -102,6 +120,11 @@ exports.updateProduct = catchAsyncErrors(
 
             req.body.images = imagesLinks;
         }
+
+        const { name, description, price, category, stock } = req.body;
+        const genre = req.body.genre;
+
+        req.body.genre = genre;
 
         product = await Product.findByIdAndUpdate(req.params.id, { $set: req.body }, {
             new: true, runValidators: true, useFindandModify: false

@@ -10,6 +10,7 @@ import { Button } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import DescriptionIcon from "@material-ui/icons/Description";
+import GroupWorkIcon from '@material-ui/icons/GroupWork';
 import StorageIcon from "@material-ui/icons/Storage";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
@@ -26,18 +27,26 @@ const UpdateProduct = ({ history, match }) => {
   const { error, product } = useSelector((state) => state.productDetails);
   const { loading, error: updateError, isUpdated } = useSelector((state) => state.product);
 
+  const categories = [
+    'PC', 'XBOX 360', 'Playstation 4', 'XBOX One', 'Playstation 5', 'Nintendo', 'PSP', 'Playstation 3', 'Nintendo DS', 'Wii'
+  ];
+
+  const genres = [
+    'First-Person', 'Third-person', 'Arcade', 'Shooting', 
+    'Racing', 'Sports', 'Spy', 'Military', 'Sci-Fi', 'Mystery', 'Horror', 'Adventure',
+    'Open-World', 'Puzzle', 'Action', 'Fighting', 'Ancient', 'Survival' 
+  ];
+
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [stock, setStock] = useState(0);
+  const [genre, setGenre] = useState([]);
+  const [availableGenre, setAvailableGenre] = useState(genres);
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-
-  const categories = [
-    'Laptop', 'Desktop', 'PC', 'Games', 'Software', 'Accessories', 'Consoles'
-  ];
 
   const productId = id;
 
@@ -50,6 +59,7 @@ const UpdateProduct = ({ history, match }) => {
       setPrice(product.price);
       setCategory(product.category);
       setStock(product.stock);
+      setGenre(product.genre);
       setOldImages(product.images);
     }
     if (error) {
@@ -80,11 +90,21 @@ const UpdateProduct = ({ history, match }) => {
     myForm.set("description", description);
     myForm.set("category", category);
     myForm.set("stock", stock);
+    for(let i = 0; i < genre.length; i++){
+      myForm.append('genre[]', genre[i]);
+    }
 
     images.forEach((image) => {
       myForm.append("images", image);
     });
     dispatch(updateProduct(productId, myForm));
+  };
+
+  const removeSelectedGenre = (index) => {
+    const updatedOptions = [...genre];
+    const removedOption = updatedOptions.splice(index, 1)[0];
+    setGenre(updatedOptions);
+    setAvailableGenre([...availableGenre, removedOption]);
   };
 
   const updateProductImagesChange = (e) => {
@@ -109,7 +129,7 @@ const UpdateProduct = ({ history, match }) => {
 
   return (
     <Fragment>
-      <MetaData title="Create Product" />
+      <MetaData title="Update Product" />
       <div className="dashboard">
         <SideBar />
         <div className="newProductContainer">
@@ -137,6 +157,37 @@ const UpdateProduct = ({ history, match }) => {
                   </option>
                 ))}
               </select>
+            </div>
+            <div>
+                <GroupWorkIcon />
+                <select
+                    onChange={(e) => {
+                    const selectedGenre = e.target.value;
+                    if (selectedGenre !== "") {
+                      setGenre([...genre, selectedGenre]);
+                      setAvailableGenre(availableGenre.filter((option) => option !== selectedGenre));
+                      e.target.value = ""; // Reset the select value to default
+                    }
+                  }}
+                >
+                  <option value="">Choose Genre</option>
+                      {availableGenre.map((item) => (
+                          <option key={item} value={item}>
+                            {item}
+                          </option>
+                  ))}
+                </select>
+            </div>
+            <div className="selectedOptions">
+              {genre.map((option, index) => (
+                <div className="selectedOption" key={index}>
+                  <input type="text" value={option} onChange={()=> {}} readOnly/>
+                  <span
+                    className="closeOption"
+                    onClick={() => removeSelectedGenre(index)}
+                  >x</span>
+                </div>
+              ))}
             </div>
             <div>
               <StorageIcon />

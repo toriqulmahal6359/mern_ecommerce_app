@@ -12,8 +12,14 @@ import Typography from '@material-ui/core/Typography'
 import { useAlert } from "react-alert";
 
 const categories = [
-    'Laptop', 'Desktop', 'PC', 'Games', 'Software', 'Accessories', 'Consoles'
-]
+    'PC', 'XBOX 360', 'Playstation 4', 'XBOX One', 'Playstation 5', 'Nintendo', 'PSP', 'Playstation 3', 'Nintendo DS', 'Wii'
+];
+
+const availableGenres = [
+    'First-Person', 'Third-person', 'Arcade', 'Shooting', 
+    'Racing', 'Sports', 'Spy', 'Military', 'Sci-Fi', 'Mystery', 'Horror', 'Adventure',
+    'Open-World', 'Puzzle', 'Action', 'Fighting', 'Ancient', 'Survival' 
+];
 
 const Products = () => {
 
@@ -24,6 +30,7 @@ const Products = () => {
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ price, setPrice ] = useState([0, 25000]);
     const [ category, setCategory ] = useState("");
+    const [ selectedGenres, setSelectedGenres ] = useState([]);
 
     const [ ratings, setRatings ] = useState(0);
 
@@ -37,13 +44,21 @@ const Products = () => {
         setPrice(data)
     }
 
+    const handleGenreSelect = (genre) => {
+        if(selectedGenres.includes(genre)){
+            setSelectedGenres(selectedGenres.filter((g) => g !== genre))
+        }else{
+            setSelectedGenres([...selectedGenres, genre])
+        }
+    }
+    
     useEffect(() => {
         if(error){
             alert.error(error);
             dispatch(clearErrors());
         }
-      dispatch(getproduct(keyword, currentPage, price, category, ratings));
-    }, [dispatch, keyword, currentPage, price, category, ratings, alert, error])
+      dispatch(getproduct(keyword, currentPage, price, category, ratings, selectedGenres));
+    }, [dispatch, keyword, currentPage, price, category, ratings, selectedGenres, alert, error])
 
     let count = filteredProductsCount;
     
@@ -75,6 +90,17 @@ const Products = () => {
                     <ul className='categoryBox'>
                         {categories.map((category) => (
                             <li className="category-link" key={category} onClick={()=> setCategory(category)}>{category}</li>
+                        ))}
+                    </ul>
+
+                    <Typography>Genres</Typography>
+                    <ul className='categoryBox'>
+                        {availableGenres.map((genre, index) => (
+                            <li className="category-link" key={genre}>
+                                <label>
+                                <input type='checkbox' value={genre} checked={selectedGenres.includes(genre)} onChange={() => handleGenreSelect(genre)} />&nbsp;&nbsp;{genre}
+                                </label>
+                            </li>
                         ))}
                     </ul>
                     

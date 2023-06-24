@@ -5,8 +5,9 @@
   border-left: 1px solid rgba(0, 0, 0, 0.158);
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 150vh;
 }
+
 .newProductContainer h1 {
   color: rgba(0, 0, 0, 0.733);
   font: 300 2rem "Roboto";
@@ -20,8 +21,8 @@
   margin: auto;
   padding: 3vmax;
   justify-content: space-evenly;
-  height: 70%;
-  width: 40vh;
+  height: 90%;
+  width: 80vh;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
 }
@@ -30,7 +31,9 @@
   display: flex;
   width: 100%;
   align-items: center;
+  position: relative; /* Added */
 }
+
 .createProductForm > div > input,
 .createProductForm > div > select,
 .createProductForm > div > textarea {
@@ -42,6 +45,41 @@
   border-radius: 4px;
   font: 300 0.9vmax cursive;
   outline: none;
+}
+
+.selectedOptions {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  border-radius: 4px;
+  display: flex; /* Added */
+  flex-wrap: wrap; /* Added */
+  align-items: center; /* Added */
+}
+
+.selectedOption {
+  display: flex; /* Modified */
+  align-items: center;
+  background-color: tomato;
+  font: 100 0.9vmax "Roboto";
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+.selectedOption input {
+  background: transparent;
+  border: none;
+  color: white;
+  width: 6vmax; /* Modified */
+  margin-right: 5px;
+  flex: 1; /* Added */
+}
+
+.selectedOption .closeOption {
+  color: white;
+  cursor: pointer;
+  margin-left: 5px;
 }
 
 .createProductForm > div > svg {
@@ -83,6 +121,7 @@
   width: 3vmax;
   margin: 0 0.5vmax;
 }
+
 #createProductBtn {
   border: none;
   background-color: tomato;
