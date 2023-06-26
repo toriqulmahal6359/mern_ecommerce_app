@@ -18,7 +18,7 @@ const categories = [
 const availableGenres = [
     'First-Person', 'Third-person', 'Arcade', 'Shooting', 
     'Racing', 'Sports', 'Spy', 'Military', 'Sci-Fi', 'Mystery', 'Horror', 'Adventure',
-    'Open-World', 'Puzzle', 'Action', 'Fighting', 'Ancient', 'Survival' 
+    'Open-World', 'Puzzle', 'Action', 'Fighting', 'Ancient', 'Survival', 'Simulation', 'Fantasy'  
 ];
 
 const Products = () => {

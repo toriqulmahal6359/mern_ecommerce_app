@@ -1,10 +1,12 @@
 footer{
-    margin-top: 10vmax;
+    margin-top: 44vmax;
     padding: 2vmax;
     background-color: rgb(34, 33, 33);
     color: white;
     display: flex;
     align-items: center;
+    margin-bottom: auto;
+    height: 25vmax;
 }
 .leftFooter{
     width: 30%;

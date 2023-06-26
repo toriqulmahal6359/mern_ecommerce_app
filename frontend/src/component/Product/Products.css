@@ -62,6 +62,8 @@
     position: absolute;
     top: 10vmax;
     left: 4vmax;
+    height: auto;
+    margin-bottom: auto;
 }
 .categoryBox{
     padding: 0%
