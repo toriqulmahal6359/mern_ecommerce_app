@@ -69,10 +69,11 @@ const ProcessOrder = ({ history, match }) => {
               className="confirmOrderPage"
               style={{
                 display: order.orderStatus === "Delivered" ? "block" : "grid",
+                height: "170vh"
               }}
             >
               <div>
-                <div className="confirmshippingArea">
+                <div className="confirmshippingArea" style={{ padding: "0 2vmax" }}>
                   <Typography>Shipping Info</Typography>
                   <div className="orderDetailsContainerBox">
                     <div>
@@ -156,6 +157,7 @@ const ProcessOrder = ({ history, match }) => {
               <div
                 style={{
                   display: order.orderStatus === "Delivered" ? "none" : "block",
+                  height: "170vh"
                 }}
               >
                 <form className="updateOrderForm" onSubmit={updateOrderSubmitHandler}>
