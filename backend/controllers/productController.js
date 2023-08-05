@@ -67,11 +67,11 @@ exports.createProduct = catchAsyncErrors(
         req.body.images = imagesLinks;
         req.body.user = req.user.id;
 
-        const { name, description, price, category, stock, genre } = req.body;
+        const { name, description, price, category, stock, genre, trailer } = req.body;
 
         const parsedGenre = req.body.genre;
         const product = await Product.create({
-            name, description, price, category, genre: parsedGenre, stock, images: imagesLinks, user: req.user.id
+            name, description, price, category, genre: parsedGenre, stock, trailer, images: imagesLinks, user: req.user.id
         });
 
         // const product = await Product.create(req.body);
@@ -102,7 +102,7 @@ exports.updateProduct = catchAsyncErrors(
         if (images !== undefined) {
             // Deleting Images From Cloudinary
             for (let i = 0; i < product.images.length; i++) {
-            await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+                await cloudinary.v2.uploader.destroy(product.images[i].public_id);
             }
 
             const imagesLinks = [];
@@ -121,7 +121,7 @@ exports.updateProduct = catchAsyncErrors(
             req.body.images = imagesLinks;
         }
 
-        const { name, description, price, category, stock } = req.body;
+        const { name, description, price, category, trailer, stock } = req.body;
         const genre = req.body.genre;
 
         req.body.genre = genre;
@@ -174,10 +174,26 @@ exports.getProductDetails = catchAsyncErrors(
         if(!product){
             return next(new ErrorHandler("Product Not Found", 404));
         }
-    
+        const relatedProducts = await Product.aggregate([
+            { 
+                $match: {
+                    _id: { $ne: product._id },
+                    genre: { $in: product.genre } 
+                }
+            },
+            {
+                $sample: { size: 4 }
+            },
+            {
+                $sort: { ratings: -1 }
+            }
+        ]);
+
+        console.log("Related Products: ", relatedProducts);
         res.status(200).json({
             success: true,
-            product
+            product,
+            relatedProducts
         })
     }
 ) 

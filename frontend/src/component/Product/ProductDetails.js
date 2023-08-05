@@ -7,6 +7,7 @@ import { clearErrors, getproductDetails, newReview } from '../../actions/product
 import { useParams } from 'react-router-dom'
 import ReactStars from 'react-rating-stars-component'
 import ReviewCard from "./ReviewCard.js"
+import ProductCard from "../Home/ProductCard"
 import Loader from "../layout/Loader/Loader"
 import { useAlert } from "react-alert"
 import { addItemsToCart } from '../../actions/cartAction'
@@ -20,7 +21,7 @@ const ProductDetails = ({ match }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const { loading, error, product } = useSelector((state) => state.productDetails);
+  const { loading, error, product, relatedProducts } = useSelector((state) => state.productDetails);
   const { success, error: reviewError } = useSelector((state) => state.newReview);
 
   const options = {
@@ -32,6 +33,7 @@ const ProductDetails = ({ match }) => {
 
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
+  const [video, setVideo] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
@@ -54,6 +56,10 @@ const ProductDetails = ({ match }) => {
 
   const submitReviewToggle = () => {
     open ? setOpen(false) : setOpen(true);
+  }
+
+  const submitTrailerToggle = () => {
+    video ? setVideo(false) : setVideo(true);
   }
 
   const reviewSubmitHandler = () => {
@@ -140,23 +146,44 @@ const ProductDetails = ({ match }) => {
               <div className='detailsBlock-4'>
                 Description: <p>{product.description}</p>
               </div> 
-              <button onClick={submitReviewToggle} className='submitReview'>Submit Review</button>
+              <div className="featureButton">
+                <button onClick={submitReviewToggle} className='submitReview'>Submit Review</button>
+                {
+                  product && product.trailer ? (
+                    <button onClick={submitTrailerToggle} className='submitTrailer'>Watch Trailer</button>
+                  ):( " " )
+                }
+                
+              </div>
+              <div id="trailerVid">
+                <Dialog maxWidth="lg" aria-labelledby="simple-dialog-trailer" open={video} onClose={submitTrailerToggle}>
+                    <DialogContent className="submitDialog">
+                      <iframe width="1120" height="540" src={product.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </DialogContent>
+                </Dialog>
+              </div>
+              
             </div>
           </div>
+          <h2 className='relatedProductsHeading'>Related Products</h2>
+          <div className="container">
+              { relatedProducts && relatedProducts.map(product => (
+                  <ProductCard key={product._id} product={product} />
+              ))}
+          </div>
+
           <h3 className='reviewsHeading'>Reviews</h3>
-
           <Dialog aria-labelledby="simple-dialog-title" open={open} onClose={submitReviewToggle}>
-                <DialogTitle>Submit Review</DialogTitle>
-                <DialogContent className="submitDialog">
-                  <Rating onChange={(e) => setRating(e.target.value)} value={rating} size='large' />
-                  <textarea className="submitDialogTextArea" cols="30" rows="5" value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={submitReviewToggle} color='secondary'>Cancel</Button>
-                  <Button onClick={reviewSubmitHandler} color='primary'>Submit</Button>
-                </DialogActions>
+              <DialogTitle>Submit Review</DialogTitle>
+              <DialogContent className="submitDialog">
+                <Rating onChange={(e) => setRating(e.target.value)} value={rating} size='large' />
+                <textarea className="submitDialogTextArea" cols="30" rows="5" value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={submitReviewToggle} color='secondary'>Cancel</Button>
+                <Button onClick={reviewSubmitHandler} color='primary'>Submit</Button>
+              </DialogActions>
           </Dialog>
-
           { product.reviews && product.reviews[0] ? (
             <div className="review">
               { product.reviews && product.reviews.map((review) => <ReviewCard key={review._id} review={review} />)}
@@ -164,6 +191,7 @@ const ProductDetails = ({ match }) => {
           ) : (
             <p className='noReviews'>No Reviews yet</p>
           )}
+
         </Fragment>
       )}
     </Fragment>

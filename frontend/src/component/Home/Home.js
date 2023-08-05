@@ -36,8 +36,8 @@ const Home = () => {
           <Fragment>
             <MetaData title="Ecommerce Site Project" />
             <div className='banner'>
-                <p>Welcome To Ecommerce</p>
-                <h1>Find Amazing Products Below</h1>
+                <p>Welcome To Gameshop Ecommerce</p>
+                <h1>Find Your Dream Games Here</h1>
     
                 
                 <a href='#container'>

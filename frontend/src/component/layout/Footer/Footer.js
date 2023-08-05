@@ -14,7 +14,8 @@ const Footer = () => {
             <img src={appStore} alt='appStore'></img>
         </div>
         <div className="midFooter">
-            <h1>ECOMMERCE</h1>
+            <h1>GAMESHOP</h1><br />
+            <h1>ECOMMERCE</h1><br /><br /><br />
             <span>High Quality is Our First Priority</span>
 
             <p>Copyright {currentYear} &copy; at <strong>Md.Toriqul Islam Khan Mahal</strong>.<br />All Rights Reserved</p>

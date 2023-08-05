@@ -12,6 +12,7 @@ import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import DescriptionIcon from "@material-ui/icons/Description";
 import GroupWorkIcon from '@material-ui/icons/GroupWork';
 import StorageIcon from "@material-ui/icons/Storage";
+import TheatersIcon from '@material-ui/icons/Theaters';
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
@@ -42,6 +43,7 @@ const UpdateProduct = ({ history, match }) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [stock, setStock] = useState(0);
+  const [trailer, setTrailer] = useState('');
   const [genre, setGenre] = useState([]);
   const [availableGenre, setAvailableGenre] = useState(genres);
   const [images, setImages] = useState([]);
@@ -59,6 +61,7 @@ const UpdateProduct = ({ history, match }) => {
       setPrice(product.price);
       setCategory(product.category);
       setStock(product.stock);
+      setTrailer(product.trailer);
       setGenre(product.genre);
       setOldImages(product.images);
     }
@@ -90,6 +93,7 @@ const UpdateProduct = ({ history, match }) => {
     myForm.set("description", description);
     myForm.set("category", category);
     myForm.set("stock", stock);
+    myForm.set("trailer", trailer);
     for(let i = 0; i < genre.length; i++){
       myForm.append('genre[]', genre[i]);
     }
@@ -192,6 +196,10 @@ const UpdateProduct = ({ history, match }) => {
             <div>
               <StorageIcon />
               <input type="number" placeholder="Stock" required onChange={(e) => setStock(e.target.value)} value={stock} />
+            </div>
+            <div>
+              <TheatersIcon />
+              <input type="text" placeholder="Trailer URL" value={trailer} onChange={(e) => setTrailer(e.target.value)} />
             </div>
             <div id="createProductFormFile">
               <input type="file" name="avatar" accept="image/*" onChange={updateProductImagesChange} multiple />

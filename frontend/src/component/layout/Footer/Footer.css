@@ -32,6 +32,11 @@ footer{
     width: 50%;
     text-align: center;
 }
+.midFooter > h3 {
+    font-size: 3vmax;
+    font-family: 'Times New Roman', Times, serif;
+    color: crimson;
+}
 .midFooter > h1{
     font-size: 4vmax;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -39,7 +44,7 @@ footer{
 }
 .midFooter > span{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin: 1vmax auto;
+    margin: 3vmax auto;
 }
 .midFooter > p{
     max-width: 60%;

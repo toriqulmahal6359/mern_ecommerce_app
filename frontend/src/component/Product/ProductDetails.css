@@ -106,7 +106,7 @@
     color: rgba(0,0,0,0.534);
     font: 300 0.8vmax sans-serif;
 }
-.submitReview {
+.submitReview, .submitTrailer {
     border: none;
     background-color: tomato;
     font: 500 0.7vmax "Roboto";
@@ -118,11 +118,11 @@
     transition: all 0.5s;
     outline: none;
 }
-.submitReview:hover {
+.submitReview:hover, .submitTrailer:hover {
     background-color: rgb(197, 68, 45);
     transform: scale(1.1);
 }
-.reviewsHeading{
+.reviewsHeading, .relatedProductsHeading {
     color: #000000be;
     font: 500 1.4vmax "Roboto";
     text-align: center;
@@ -162,6 +162,69 @@
     color: rgba(0,0,0,0.548);
     font: 400 1.3vmax "Gill Sans";
     text-align: center;
+}
+
+.container {
+    display: flex;
+    margin: 2vmax auto;
+    width: 80vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+}
+.productCard {
+    width: 16vmax;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: rgba(48, 48, 48);
+    margin: 2vmax;
+    transition: all 0.5s;
+    padding-bottom: 0.5vmax;
+}
+.productCard > img {
+    width: 16vmax;
+}
+.productCard > div {
+    margin: 0.5vmax;
+    display: flex;
+    justify-content: flex-start;
+}
+.productCard > div > span {
+    margin: 1vmax;
+    font: 300 0.7vmax "Roboto";
+}
+.productCard > p {
+    font-family: "Roboto";
+    font-size: 1.2vmax;
+    margin: 1vmax 0.5vmax;
+    margin-bottom: 0;
+}
+.productCard > span {
+    margin: 0.5vmax;
+    color: tomato;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1vmax; 
+}
+.productCard:hover {
+    box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+    transform: translateY(-1vmax);
+}
+#trailerVid > .MuiDialog-paperWidthSm {
+    max-width: 1160px;
+}
+#trailerVid > .MuiDialog-paperScrollPaper {
+    display: flex;
+    max-height: calc(100% - 35px);
+    flex-direction: column;
+}
+.featureButton{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.featureButton > button{
+    margin: 0.3vmax;
 }
 
 @media screen and (max-width: 600px){
@@ -222,7 +285,7 @@
     .detailsBlock-4 > p {
         font: 300 1.8vmax sans-serif;
     }
-    .submitReview {
+    .submitReview, .submitTrailer {
         font: 500 1.7vmax "Roboto";
         padding: 1.5vmax;
         width: 20vmax;

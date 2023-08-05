@@ -10,6 +10,7 @@ import GroupWorkIcon from '@material-ui/icons/GroupWork';
 import DescriptionIcon from "@material-ui/icons/Description";
 import StorageIcon from "@material-ui/icons/Storage";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
+import TheatersIcon from '@material-ui/icons/Theaters';
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
@@ -29,6 +30,7 @@ const NewProduct = ({ history }) => {
   const [stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
+  const [trailer, setTrailer] = useState('');
 
   const categories = [
     'PC', 'XBOX 360', 'Playstation 4', 'XBOX One', 'Playstation 5', 'Nintendo', 'PSP', 'Playstation 3', 'Nintendo DS', 'Wii'
@@ -79,13 +81,14 @@ const NewProduct = ({ history }) => {
     myForm.set("description", description);
     myForm.set("category", category);
     myForm.set("stock", stock);
+    myForm.set("trailer", trailer);
 
     for(let i = 0; i < genre.length; i++){
       myForm.append('genre[]', genre[i]);
     }
     
     images.forEach((image) => {
-      myForm.append("images", image);
+      myForm.append("images[]", image);
     });
     dispatch(createProduct(myForm));
   };
@@ -175,6 +178,10 @@ const NewProduct = ({ history }) => {
             <div>
               <StorageIcon />
               <input type="number" placeholder="Stock" required onChange={(e) => setStock(e.target.value)} />
+            </div>
+            <div>
+              <TheatersIcon />
+              <input type="text" placeholder="Trailer URL" value={trailer} onChange={(e) => setTrailer(e.target.value)} />
             </div>
             <div id="createProductFormFile">
               <input type="file" name="avatar" accept="image/*" onChange={createProductImagesChange} multiple />
