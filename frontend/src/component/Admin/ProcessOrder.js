@@ -101,13 +101,13 @@ const ProcessOrder = ({ history, match }) => {
                       <p
                         className={
                           order.paymentInfo &&
-                          order.paymentInfo.status === "succeeded"
+                          order.paymentInfo.status === "PAID"
                             ? "greenColor"
                             : "redColor"
                         }
                       >
                         {order.paymentInfo &&
-                        order.paymentInfo.status === "succeeded"
+                        order.paymentInfo.status === "PAID"
                           ? "PAID"
                           : "NOT PAID"}
                       </p>
