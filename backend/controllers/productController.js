@@ -11,7 +11,7 @@ exports.getAllProducts = catchAsyncErrors(
         const resultPerpage = 20;
         const productCount = await Product.countDocuments();
         const recentProducts = await Product.find().sort({ createdAt: -1 }).limit(4);
-        const bannerProducts = await Product.find().sort({ createdAt: -1 }).limit(20);
+        const bannerProducts = await Product.find().sort({ createdAt: -1 }).limit(30);
         const featuredProducts = await Product.find().sort({ ratings: -1 }).limit(8);
         const apiFeature = new ApiFeature(Product.find(), req.query).search().filter();
 
