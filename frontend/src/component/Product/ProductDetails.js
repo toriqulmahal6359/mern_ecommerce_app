@@ -148,9 +148,9 @@ const ProductDetails = ({ match }) => {
               </div> 
               <div className="featureButton">
                 <button onClick={submitReviewToggle} className='submitReview'>Submit Review</button>
-                
+
                 {
-                  product && product.trailer !== undefined ? (
+                  product && product.trailer !== "undefined" ? (
                     <button onClick={submitTrailerToggle} className='submitTrailer'>Watch Trailer</button>
                   ) : null
                 }
