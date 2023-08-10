@@ -85,6 +85,6 @@
 }
 .game-platform > .explore-buttons > a > button:hover {
     background-color: white;
-    color: black;
+    color:initial;
     outline: none;
 }
