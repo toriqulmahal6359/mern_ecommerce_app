@@ -29,7 +29,9 @@ const NewProduct = ({ history }) => {
   const [category, setCategory] = useState("");
   const [stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
+  const [backdrop, setBackdrop] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
+  const [bannerPreview, setBannerPreview] = useState([]);
   const [trailer, setTrailer] = useState('');
 
   const categories = [
@@ -90,6 +92,10 @@ const NewProduct = ({ history }) => {
     images.forEach((image) => {
       myForm.append("images[]", image);
     });
+
+    backdrop.forEach((banner) => {
+      myForm.append("backdrops", banner);
+    });
     dispatch(createProduct(myForm));
   };
 
@@ -112,6 +118,26 @@ const NewProduct = ({ history }) => {
       reader.readAsDataURL(file);
     });
   };
+
+  const createBackdropImageChange = (e) => {
+    const files = Array.from(e.target.files);
+
+    setBackdrop([]);
+    setBannerPreview([]);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setBannerPreview((old) => [...old, reader.result]);
+          setBackdrop((old) => [...old, reader.result]);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
+  }
 
   return (
     <Fragment>
@@ -188,6 +214,15 @@ const NewProduct = ({ history }) => {
             </div>
             <div id="createProductFormImage">
               {imagesPreview.map((image, index) => (
+                <img key={index} src={image} alt="Product Preview" />
+              ))}
+            </div>
+            <span>Banner Image:</span>
+            <div id="createProductBackdropFile">
+              <input type="file" name="avatar" accept="image/*" onChange={createBackdropImageChange} multiple />
+            </div>
+            <div id="createProductBackdropImage">
+              {bannerPreview.map((image, index) => (
                 <img key={index} src={image} alt="Product Preview" />
               ))}
             </div>

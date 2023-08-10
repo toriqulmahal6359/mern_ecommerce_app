@@ -1,0 +1,79 @@
+.game-carousel-container{
+    width: 100vw;
+    background-color: white;
+}
+.game-image{
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.game-image > img {
+    height: 100%;
+    width: 100%;
+}
+.game-card-container{
+    height: 660px;
+    background-color: white;
+}
+.game-card{
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1)), var(--img);
+}
+.game-carousel-container::after{
+    content: '';
+    width: 100vw;
+    height: 105vmin;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 0%;
+    left: 0;
+    /* clip-path: polygon(100% 68%, 0% 100%, 100% 100%); */
+    /* -webkit-clip-path: polygon(100% 0, 100% 50%, 0 72%, 0 0);  */
+    /* clip-path: polygon(100% 0, 100% 50%, 0 72%, 0 0); */
+    /* -webkit-clip-path: polygon(100% 29%, 100% 100%, 0 100%, 0 58%); 
+    clip-path: polygon(100% 29%, 100% 100%, 0 100%, 0 58%); */
+    /* -webkit-clip-path: polygon(100% 62%, 100% 100%, 0 100%, 0 83%); 
+    clip-path: polygon(100% 62%, 100% 100%, 0 100%, 0 83%); */
+    /* -webkit-clip-path: polygon(100% 71%, 100% 100%, 0 100%, 0 87%); 
+    clip-path: polygon(100% 71%, 100% 100%, 0 100%, 0 87%); */
+    /* -webkit-clip-path: polygon(100% 58%, 100% 100%, 0 100%, 0 87%); 
+    clip-path: polygon(100% 58%, 100% 100%, 0 100%, 0 87%); */
+    /* -webkit-clip-path: polygon(100% 69%, 100% 100%, 0 100%, 0 87%); 
+    clip-path: polygon(100% 69%, 100% 100%, 0 100%, 0 87%); */
+    /* -webkit-clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 90%); 
+    clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 90%); */
+    
+    -webkit-clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 95%); 
+    clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 95%);
+
+    max-width: 100%;
+}
+.game-detail{
+    position: absolute;
+    top: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.game-platform{
+    color: white;
+    display: flex;
+    align-items: center;
+    font-family: "Roboto";
+    font-size: 4vmax;
+    font-weight: 100;
+    flex-direction: column;
+}
+.game-platform > a > button {
+    outline: 1px solid white;
+    background-color: inherit;
+    padding: 1vmax 2vmax;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5vmax;
+    cursor: pointer;
+}

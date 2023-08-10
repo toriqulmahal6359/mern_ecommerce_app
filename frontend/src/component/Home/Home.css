@@ -1,13 +1,13 @@
-.banner{
-    background-image: linear-gradient(to right, #635dc0, #3027ae);
-    height: 100vmin;
+/* .banner{ */
+    /* background-image: linear-gradient(to right, #635dc0, #3027ae); */
+    /* height: 100vmin;
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
     justify-content: center;
-    color: white;
-}
+    color: white; */
+/* } */
 .banner > h1 {
     margin: 5vmax;
     font: 600 2.5vmax "Roboto";
@@ -30,7 +30,7 @@
     background-color: rgba(255, 255, 255, 0);
     color: white;
 }
-.banner::after{
+/* .banner::after{
     content: '';
     width: 100vw;
     height: 100vmin;
@@ -38,9 +38,27 @@
     position: absolute;
     top: 0%;
     left: 0;
-    clip-path: polygon(100% 68%, 0% 100%, 100% 100%);
-    max-width: 100%;
-}
+    /* clip-path: polygon(100% 68%, 0% 100%, 100% 100%); */
+    /* -webkit-clip-path: polygon(100% 0, 100% 50%, 0 72%, 0 0);  */
+    /* clip-path: polygon(100% 0, 100% 50%, 0 72%, 0 0); */
+    /* -webkit-clip-path: polygon(100% 29%, 100% 100%, 0 100%, 0 58%); 
+    clip-path: polygon(100% 29%, 100% 100%, 0 100%, 0 58%); */
+    /* -webkit-clip-path: polygon(100% 62%, 100% 100%, 0 100%, 0 83%); 
+    clip-path: polygon(100% 62%, 100% 100%, 0 100%, 0 83%); */
+    /* -webkit-clip-path: polygon(100% 71%, 100% 100%, 0 100%, 0 87%); 
+    clip-path: polygon(100% 71%, 100% 100%, 0 100%, 0 87%); */
+    /* -webkit-clip-path: polygon(100% 58%, 100% 100%, 0 100%, 0 87%); 
+    clip-path: polygon(100% 58%, 100% 100%, 0 100%, 0 87%); */
+    /* -webkit-clip-path: polygon(100% 69%, 100% 100%, 0 100%, 0 87%); 
+    clip-path: polygon(100% 69%, 100% 100%, 0 100%, 0 87%); */
+    /* -webkit-clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 90%); 
+    clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 90%); */
+    
+    /* -webkit-clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 95%); 
+    clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 95%); */
+
+    /* max-width: 100%; */
+/* } */
 .homeHeading{
     text-align: center;
     font-family: Roboto;
@@ -98,7 +116,13 @@
     box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
     transform: translateY(-1vmax);
 }
-
+/* .above-footer{
+    background-image: linear-gradient(to right, #635dc0, #3027ae);
+    width: 100vw;
+    height: 100vmin; 
+    -webkit-clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 95%); 
+    clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 95%);
+} */
 @media screen and (max-width: 600px) {
     .productCard > p {
         font-size: 1.7vmax;

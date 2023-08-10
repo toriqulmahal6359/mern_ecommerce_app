@@ -7,11 +7,17 @@ const productSchema = new mongoose.Schema({
     ratings: {type: Number, default: 0},
     images: [
         {
-            public_id:{type: String, required: true}, 
-            url:{type: String, required: true}
+            public_id:{ type: String, required: true }, 
+            url:{ type: String, required: true }
         }
     ],
-    category: {type: String, required: [true, "Please Enter Product Category"]},
+    backdrops: [
+        {
+            public_id:{ type: String, required: true }, 
+            url:{ type: String, required: true }
+        }
+    ],
+    category: { type: String, required: [true, "Please Enter Product Category"] },
     genre: { type: [String], required: true },
     stock: {type: Number, required: [true, "Please Enter Product Stock"], maxLength: [4, 'Stock cannot be exceed 4 characters'], default: 1},
     numOfReviews: {type: Number, default: 0},

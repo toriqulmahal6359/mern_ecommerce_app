@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import "./Footer.css"
 import playStore from "../../../images/playStore.png"; 
 import appStore from "../../../images/appStore.png"; 

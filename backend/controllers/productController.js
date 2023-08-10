@@ -11,6 +11,7 @@ exports.getAllProducts = catchAsyncErrors(
         const resultPerpage = 20;
         const productCount = await Product.countDocuments();
         const recentProducts = await Product.find().sort({ createdAt: -1 }).limit(4);
+        const bannerProducts = await Product.find().sort({ createdAt: -1 }).limit(20);
         const featuredProducts = await Product.find().sort({ ratings: -1 }).limit(8);
         const apiFeature = new ApiFeature(Product.find(), req.query).search().filter();
 
@@ -36,14 +37,15 @@ exports.getAllProducts = catchAsyncErrors(
             resultPerpage,
             filteredProductsCount,
             recentProducts,
-            featuredProducts
+            featuredProducts,
+            bannerProducts
         });
     }
 ) 
 
 exports.createProduct = catchAsyncErrors(
     async(req, res, next) => {
-        let images = [];
+        let images = [] 
 
         if (typeof req.body.images === "string") {
             images.push(req.body.images);
@@ -64,14 +66,37 @@ exports.createProduct = catchAsyncErrors(
           });
         }
 
+        let backdrops = [];
+
+        if (typeof req.body.backdrops === "string") {
+            backdrops.push(req.body.backdrops);
+        } else {
+            backdrops = req.body.backdrops;
+        }
+
+        const backdropLinks = [];
+
+        for (let i = 0; i < backdrops.length; i++) {
+          const banner = await cloudinary.v2.uploader.upload(backdrops[i], {
+            folder: "backdrops",
+          });
+      
+          backdropLinks.push({
+            public_id: banner.public_id,
+            url: banner.secure_url,
+          });
+        }
+
         req.body.images = imagesLinks;
+        req.body.backdrops = backdropLinks;
+
         req.body.user = req.user.id;
 
         const { name, description, price, category, stock, genre, trailer } = req.body;
 
         const parsedGenre = req.body.genre;
         const product = await Product.create({
-            name, description, price, category, genre: parsedGenre, stock, trailer, images: imagesLinks, user: req.user.id
+            name, description, price, category, genre: parsedGenre, stock, trailer, images: imagesLinks, backdrops: backdropLinks, user: req.user.id
         });
 
         // const product = await Product.create(req.body);
@@ -119,6 +144,36 @@ exports.updateProduct = catchAsyncErrors(
             }
 
             req.body.images = imagesLinks;
+        }
+
+        let backdrops = [];
+
+        if (typeof req.body.backdrops === "string") {
+            backdrops.push(req.body.backdrops);
+        } else {
+            backdrops = req.body.backdrops;
+        }
+
+        if (backdrops !== undefined) {
+            // Deleting Images From Cloudinary
+            for (let i = 0; i < product.backdrops.length; i++) {
+                await cloudinary.v2.uploader.destroy(product.backdrops[i].public_id);
+            }
+
+            const backdropLinks = [];
+
+            for (let i = 0; i < backdrops.length; i++) {
+                const banner = await cloudinary.v2.uploader.upload(backdrops[i], {
+                    folder: "backdrops",
+                });
+
+                backdropLinks.push({
+                    public_id: banner.public_id,
+                    url: banner.secure_url,
+                });
+            }
+
+            req.body.backdrops = backdropLinks;
         }
 
         const { name, description, price, category, trailer, stock } = req.body;

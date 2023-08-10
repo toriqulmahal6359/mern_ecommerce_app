@@ -7,6 +7,7 @@ import { clearErrors, getproduct } from '../../actions/productAction';
 import { useSelector, useDispatch } from 'react-redux';
 import Loader from '../layout/Loader/Loader';
 import { useAlert } from 'react-alert';
+import HeroCard from './HeroCard';
 
 
 const product = {
@@ -19,7 +20,7 @@ const product = {
 const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
-  const { loading, error, recentProducts, featuredProducts, productsCount } = useSelector((state) => state.products);
+  const { loading, error, bannerProducts, recentProducts, featuredProducts, productsCount } = useSelector((state) => state.products);
   
   useEffect(() => {
     if(error){
@@ -35,17 +36,11 @@ const Home = () => {
         (
           <Fragment>
             <MetaData title="Ecommerce Site Project" />
-            <div className='banner'>
-                <p>Welcome To Gameshop Ecommerce</p>
-                <h1>Find Your Dream Games Here</h1>
-    
-                
-                <a href='#container'>
-                    <button>
-                        Scroll <CgMouse />
-                    </button>
-                </a>
-            </div>
+            {/* <div className='banner'> */}
+                {/* <p>Welcome To Gameshop Ecommerce</p> */}
+                {/* <h1>Find Your Dream Games Here</h1> */}
+                <HeroCard products={bannerProducts}/>
+            {/* </div> */}
             <h2 className='homeHeading'>Recently Added</h2>
               <div className='container' id='container'>
                 { recentProducts && recentProducts.map((product) => (
@@ -61,8 +56,10 @@ const Home = () => {
           </Fragment>
         )
       }
+      {/* <div className="above-footer">
+
+      </div> */}
     </Fragment>
-   
   )
 }
 

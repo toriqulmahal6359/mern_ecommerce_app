@@ -90,12 +90,14 @@
   color: rgba(0, 0, 0, 0.623);
 }
 
-#createProductFormFile > input {
+#createProductFormFile > input,
+#createProductBackdropFile > input {
   display: flex;
   padding: 0%;
 }
 
-#createProductFormFile > input::file-selector-button {
+#createProductFormFile > input::file-selector-button,
+#createProductBackdropFile > input::file-selector-button {
   cursor: pointer;
   width: 100%;
   z-index: 2;
@@ -109,16 +111,18 @@
   background-color: rgb(255, 255, 255);
 }
 
-#createProductFormFile > input::file-selector-button:hover {
+#createProductFormFile > input::file-selector-button:hover,
+#createProductBackdropFile > input::file-selector-button:hover {
   background-color: rgb(235, 235, 235);
 }
 
-#createProductFormImage {
+#createProductFormImage, #createProductBackdropImage {
   width: 100%;
   overflow: auto;
 }
 
-#createProductFormImage > img {
+#createProductFormImage > img,
+#createProductBackdropImage > img {
   width: 3vmax;
   margin: 0 0.5vmax;
 }

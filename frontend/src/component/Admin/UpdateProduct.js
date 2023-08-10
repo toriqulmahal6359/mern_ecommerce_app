@@ -47,8 +47,11 @@ const UpdateProduct = ({ history, match }) => {
   const [genre, setGenre] = useState([]);
   const [availableGenre, setAvailableGenre] = useState(genres);
   const [images, setImages] = useState([]);
+  const [backdrop, setBackdrop] = useState([]);
   const [oldImages, setOldImages] = useState([]);
+  const [oldBackdropImages, setOldBackdropImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
+  const [bannerPreview, setBannerPreview] = useState([]);
 
   const productId = id;
 
@@ -64,6 +67,7 @@ const UpdateProduct = ({ history, match }) => {
       setTrailer(product.trailer);
       setGenre(product.genre);
       setOldImages(product.images);
+      setOldBackdropImages(product.backdrops);
     }
     if (error) {
       alert.error(error);
@@ -101,6 +105,11 @@ const UpdateProduct = ({ history, match }) => {
     images.forEach((image) => {
       myForm.append("images", image);
     });
+
+    backdrop.forEach((banner) => {
+      myForm.append("backdrops", banner);
+    });
+
     dispatch(updateProduct(productId, myForm));
   };
 
@@ -125,6 +134,26 @@ const UpdateProduct = ({ history, match }) => {
         if (reader.readyState === 2) {
           setImagesPreview((old) => [...old, reader.result]);
           setImages((old) => [...old, reader.result]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const updateBackdropImageChange = (e) => {
+    const files = Array.from(e.target.files);
+
+    setBackdrop([]);
+    setBannerPreview([]);
+    setOldBackdropImages([]);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setBannerPreview((old) => [...old, reader.result]);
+          setBackdrop((old) => [...old, reader.result]);
         }
       };
       reader.readAsDataURL(file);
@@ -212,6 +241,21 @@ const UpdateProduct = ({ history, match }) => {
             </div>
             <div id="createProductFormImage">
               {imagesPreview.map((image, index) => (
+                <img key={index} src={image} alt="Product Preview" />
+              ))}
+            </div>
+            <span>Banner Image:</span>
+            <div id="createProductBackdropFile">
+              <input type="file" name="avatar" accept="image/*" onChange={updateBackdropImageChange} multiple />
+            </div>
+            <div id="createProductBackdropImage">
+              {oldBackdropImages &&
+                oldBackdropImages.map((image, index) => (
+                  <img key={index} src={image.url} alt="Old Product Preview" />
+                ))}
+            </div>
+            <div id="createProductBackdropImage">
+              {bannerPreview.map((image, index) => (
                 <img key={index} src={image} alt="Product Preview" />
               ))}
             </div>
