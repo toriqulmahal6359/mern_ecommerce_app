@@ -12,7 +12,7 @@ const HeroCard = ({ products }) => {
             {  products?.map((product) => (
                 <Paper>
                     <div className='game-card-container'>
-                    <div className='game-card' style={{"--img": `url(${product.backdrops[0].url})`}}>
+                    <div className='game-card' style={{"--img": `url(${product.images[0].url})`}}>
                         <div className='game-detail'>
                             <div className='game-image'>
                                 <img src={product.images[0].url} alt={product.name} />
