@@ -67,8 +67,13 @@
     font-weight: 100;
     flex-direction: column;
 }
-.game-platform > a > button {
-    outline: 1px solid white;
+.game-platform > .explore-buttons {
+    display: flex;
+    flex-direction: row;
+}
+.game-platform > .explore-buttons > a > button {
+    margin: 0.5vmax;
+    border: 0.2vmax solid white;
     background-color: inherit;
     padding: 1vmax 2vmax;
     border-radius: 25px;
@@ -76,4 +81,10 @@
     text-decoration: none;
     font-size: 1.5vmax;
     cursor: pointer;
+    transition: all 0.5s;
+}
+.game-platform > .explore-buttons > a > button:hover {
+    background-color: white;
+    color: black;
+    outline: none;
 }
