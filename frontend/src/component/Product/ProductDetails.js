@@ -149,11 +149,10 @@ const ProductDetails = ({ match }) => {
               <div className="featureButton">
                 <button onClick={submitReviewToggle} className='submitReview'>Submit Review</button>
                 {
-                  product && product.trailer ? (
+                  product && product.trailer !== undefined ? (
                     <button onClick={submitTrailerToggle} className='submitTrailer'>Watch Trailer</button>
-                  ):( " " )
+                  ) : null
                 }
-                
               </div>
               <div id="trailerVid">
                 <Dialog maxWidth="lg" aria-labelledby="simple-dialog-trailer" open={video} onClose={submitTrailerToggle}>
