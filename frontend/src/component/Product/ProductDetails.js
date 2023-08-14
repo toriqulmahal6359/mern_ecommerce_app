@@ -150,7 +150,7 @@ const ProductDetails = ({ match }) => {
                 <button onClick={submitReviewToggle} className='submitReview'>Submit Review</button>
 
                 {
-                  product && (product.trailer !== "undefined" || product.trailer !== "" || product.trailer !== null || product.trailer !== "N/A") ? (
+                  product && (product.trailer !== "undefined" && product.trailer !== "" && product.trailer !== null && product.trailer !== "N/A") ? (
                     <button onClick={submitTrailerToggle} className='submitTrailer'>Watch Trailer</button>
                   ) : null
                 }
