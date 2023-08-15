@@ -34,7 +34,7 @@ const Products = () => {
 
     const [ ratings, setRatings ] = useState(0);
 
-    const { loading, error, products, productsCount, resultsPerPage, filteredProductsCount } = useSelector((state) => state.products);
+    const { loading, error, products, productsCount, resultPerPage, filteredProductsCount } = useSelector((state) => state.products);
 
     const setCurrentPageNo = (e) => {
         setCurrentPage(e);
@@ -117,7 +117,7 @@ const Products = () => {
                     </fieldset>    
                 </div>}
                 
-                { resultsPerPage < count && (
+                { resultPerPage < count && (
                     <div className='paginationBox'>
                         <Pagination
                             activePage={currentPage}

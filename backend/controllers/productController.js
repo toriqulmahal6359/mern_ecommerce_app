@@ -8,7 +8,7 @@ const cloudinary = require("cloudinary");
 
 exports.getAllProducts = catchAsyncErrors(
     async(req, res) => {
-        const resultPerpage = 20;
+        const resultPerpage = 16;
         const productCount = await Product.countDocuments();
         const recentProducts = await Product.find().sort({ createdAt: -1 }).limit(4);
         const bannerProducts = await Product.find().sort({ createdAt: -1 }).limit(30);
