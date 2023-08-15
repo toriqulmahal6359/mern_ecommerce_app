@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import "./Footer.css"
 import playStore from "../../../images/playStore.png"; 
-import appStore from "../../../images/appStore.png"; 
+import appStore from "../../../images/appStore.png";
+import { CgFacebook, CgInstagram, CgYoutube } from 'react-icons/cg';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,8 +11,10 @@ const Footer = () => {
         <div className="leftFooter">
             <h4>Download Our App</h4>
             <p>Download App For iOS and Android Phone</p><br />
-            <img src={playStore} alt='playStore'></img>
-            <img src={appStore} alt='appStore'></img>
+            <div>
+              <img src={playStore} alt='playStore'></img>
+              <img src={appStore} alt='appStore'></img>
+            </div>
         </div>
         <div className="midFooter">
             <h1>GAMESHOP</h1><br />
@@ -22,9 +25,11 @@ const Footer = () => {
         </div>
         <div className="rightFooter">
             <h4>Follow Us</h4>
-            <a href='javascript:void(0)'>Facebook</a>
-            <a href='javascript:void(0)'>Youtube</a>
-            <a href='javascript:void(0)'>Instagram</a>
+            <div>
+              <a href='javascript:void(0)'><CgFacebook /></a>
+              <a href='javascript:void(0)'><CgYoutube /></a>
+              <a href='javascript:void(0)'><CgInstagram /></a>
+            </div>
         </div>
     </footer>
   )

@@ -8,13 +8,13 @@ const cloudinary = require("cloudinary");
 
 exports.getAllProducts = catchAsyncErrors(
     async(req, res) => {
-        const resultPerpage = 16;
+        const resultsPerpage = 16;
         const productCount = await Product.countDocuments();
         const recentProducts = await Product.find().sort({ createdAt: -1 }).limit(4);
         const bannerProducts = await Product.find().sort({ createdAt: -1 }).limit(30);
         const featuredProducts = await Product.find().sort({ ratings: -1 }).limit(8);
         const apiFeature = new ApiFeature(Product.find(), req.query).search().filter();
-
+        
         // Add genre filter if genres are present in the request query
         // if (req.query.genres) {
         //     const genres = req.query.genres.split(",");
@@ -24,17 +24,21 @@ exports.getAllProducts = catchAsyncErrors(
         if (req.query.genres) {
             const genres = req.query.genres.split(",");
             apiFeature.query.where("genre").in(genres);
-          }
+        }
 
-        const products = await apiFeature.query;
-        let filteredProductsCount = products.length;
-        apiFeature.pagination(resultPerpage);
-
+        let filteredProductsCount = productCount;
+        apiFeature.pagination(resultsPerpage);
+        
+        let products = await apiFeature.query;
+        // let filteredProductsCount = products.length;
+        // apiFeature.pagination(resultsPerpage);
+        // products = await apiFeature.query;
+        
         return res.status(200).json({
             success: true,
             products,
             productCount,
-            resultPerpage,
+            resultsPerpage,
             filteredProductsCount,
             recentProducts,
             featuredProducts,

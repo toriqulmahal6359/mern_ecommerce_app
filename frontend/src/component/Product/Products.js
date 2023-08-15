@@ -34,7 +34,7 @@ const Products = () => {
 
     const [ ratings, setRatings ] = useState(0);
 
-    const { loading, error, products, productsCount, resultPerPage, filteredProductsCount } = useSelector((state) => state.products);
+    const { loading, error, products, productsCount, resultsPerPage, filteredProductsCount } = useSelector((state) => state.products);
 
     const setCurrentPageNo = (e) => {
         setCurrentPage(e);
@@ -51,6 +51,8 @@ const Products = () => {
             setSelectedGenres([...selectedGenres, genre])
         }
     }
+
+    let count = filteredProductsCount;
     
     useEffect(() => {
         if(error){
@@ -59,8 +61,6 @@ const Products = () => {
         }
       dispatch(getproduct(keyword, currentPage, price, category, ratings, selectedGenres));
     }, [dispatch, keyword, currentPage, price, category, ratings, selectedGenres, alert, error])
-
-    let count = filteredProductsCount;
     
   return (
     <Fragment>
@@ -85,7 +85,6 @@ const Products = () => {
                         min={0}
                         max={25000}
                     ></Slider>
-
                     <Typography>Categories</Typography>
                     <ul className='categoryBox'>
                         {categories.map((category) => (
@@ -117,11 +116,11 @@ const Products = () => {
                     </fieldset>    
                 </div>}
                 
-                { resultPerPage < count && (
+                { resultsPerPage < count && (
                     <div className='paginationBox'>
                         <Pagination
                             activePage={currentPage}
-                            itemsCountPerPage={resultPerPage}
+                            itemsCountPerPage={resultsPerPage}
                             totalItemsCount={productsCount}
                             onChange={setCurrentPageNo}
                             nextPageText="Next"

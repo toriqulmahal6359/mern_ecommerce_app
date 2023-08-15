@@ -46,7 +46,7 @@ export const productReducers = (state = { products: [] }, action) => {
                 loading: false,
                 products: action.payload.products,
                 productsCount: action.payload.productCount,
-                resultPerPage: action.payload.resultPerpage,
+                resultsPerPage: action.payload.resultsPerpage,
                 filteredProductsCount: action.payload.filteredProductsCount,
                 recentProducts: action.payload.recentProducts,
                 featuredProducts: action.payload.featuredProducts,
