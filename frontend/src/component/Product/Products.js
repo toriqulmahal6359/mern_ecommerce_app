@@ -121,7 +121,7 @@ const Products = () => {
                     <div className='paginationBox'>
                         <Pagination
                             activePage={currentPage}
-                            itemsCountPerPage={resultsPerPage}
+                            itemsCountPerPage={resultPerPage}
                             totalItemsCount={productsCount}
                             onChange={setCurrentPageNo}
                             nextPageText="Next"
