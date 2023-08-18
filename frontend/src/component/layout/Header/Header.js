@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactNavbar } from "overlay-navbar";
-import logo from "../../../images/logo.png";
+import logo from "../../../images/8002111.png";
+// import logo from "../../../images/logo.png";
 import "./Header.css";
 
 
@@ -8,7 +9,7 @@ const Header = () => {
   const options = {
     burgerColorHover: "#eb4034",
     logo: logo,
-    logoWidth: "20vmax",
+    logoWidth: "15vmax",
     navColor1: "white",
     logoHoverSize: "10px",
     logoHoverColor: "#eb4034",

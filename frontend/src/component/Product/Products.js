@@ -71,9 +71,13 @@ const Products = () => {
                 <MetaData title='Products --Ecommerce'/>
                 <h2 className='productsHeading'>Products</h2>
                 <div className="products">
-                    { products && products.map(product => (
-                        <ProductCard key={product.id} product={product}/>
-                    ))}
+                    { products && products.length > 0 ? (
+                        products.map(product => (
+                            <ProductCard key={product.id} product={product}/>
+                        ))
+                    ) : (
+                        <p className='noProduct'>No Products Found</p>
+                    )}
                 </div>
                 { keyword && <div className='filterBox'>
                     <Typography>Price</Typography>
@@ -90,8 +94,7 @@ const Products = () => {
                         {categories.map((category) => (
                             <li className="category-link" key={category} onClick={()=> setCategory(category)}>{category}</li>
                         ))}
-                    </ul>
-
+                    </ul>   
                     <Typography>Genres</Typography>
                     <ul className='categoryBox'>
                         {availableGenres.map((genre, index) => (

@@ -1,3 +1,8 @@
+@keyframes backdrop {
+    0% { transform: scale(1) }
+    100% { transform: scale(1.1); }
+}
+
 .game-carousel-container{
     width: 100vw;
     background-color: white;
@@ -15,41 +20,39 @@
     height: 660px;
     background-color: white;
 }
-.game-card{
-    background-repeat: no-repeat;
+.game-card {
+    position: relative; /* Ensure proper positioning for pseudo-element */
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1)), var(--img);
+    overflow: hidden; /* Hide any overflow from pseudo-element */
 }
+
+.game-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), var(--img);
+    animation: backdrop 7s infinite; /* Adjust duration and other properties as needed */
+}
+
 .game-carousel-container::after{
     content: '';
     width: 100vw;
-    height: 105vmin;
+    height: 110vmin;
     background-color: #FFFFFF;
     position: absolute;
     top: 0%;
     left: 0;
-    /* clip-path: polygon(100% 68%, 0% 100%, 100% 100%); */
-    /* -webkit-clip-path: polygon(100% 0, 100% 50%, 0 72%, 0 0);  */
-    /* clip-path: polygon(100% 0, 100% 50%, 0 72%, 0 0); */
-    /* -webkit-clip-path: polygon(100% 29%, 100% 100%, 0 100%, 0 58%); 
-    clip-path: polygon(100% 29%, 100% 100%, 0 100%, 0 58%); */
-    /* -webkit-clip-path: polygon(100% 62%, 100% 100%, 0 100%, 0 83%); 
-    clip-path: polygon(100% 62%, 100% 100%, 0 100%, 0 83%); */
-    /* -webkit-clip-path: polygon(100% 71%, 100% 100%, 0 100%, 0 87%); 
-    clip-path: polygon(100% 71%, 100% 100%, 0 100%, 0 87%); */
-    /* -webkit-clip-path: polygon(100% 58%, 100% 100%, 0 100%, 0 87%); 
-    clip-path: polygon(100% 58%, 100% 100%, 0 100%, 0 87%); */
-    /* -webkit-clip-path: polygon(100% 69%, 100% 100%, 0 100%, 0 87%); 
-    clip-path: polygon(100% 69%, 100% 100%, 0 100%, 0 87%); */
-    /* -webkit-clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 90%); 
-    clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 90%); */
-    
-    -webkit-clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 95%); 
-    clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 95%);
+    -webkit-clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 91%); 
+    clip-path: polygon(100% 78%, 100% 100%, 0 100%, 0 91%);
 
     max-width: 100%;
+
 }
 .game-detail{
     position: absolute;
@@ -87,4 +90,32 @@
     background-color: white;
     color:initial;
     outline: none;
+}
+@media screen and (max-width: 600px) {
+    .game-detail{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .game-image{
+        border-radius: 5px;
+        margin-bottom: 2vmax;
+    }
+    .game-image > img {
+        height: 100%;
+        width: 100%;
+    }
+    .game-carousel-container::after{
+        -webkit-clip-path: none; 
+        clip-path: none;
+        z-index: 1;
+        width: 0vmax;
+        height: 0vmax;
+        position: absolute;
+        top: 0%;
+        left: 0;
+    }
+    .game-platform > h4 {
+        text-align: center;
+    }
 }

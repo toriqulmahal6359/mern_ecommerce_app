@@ -15,6 +15,13 @@
     min-height: 30vh;
     margin-left: 8vmax;
 }
+.noProduct{
+    padding: 12vmax;
+    color: rgba(0,0,0,0.548);
+    font: 400 2vmax "Gill Sans";
+    text-align: center;
+    margin: 3vmax;
+}
 .paginationBox {
     display: flex;
     justify-content: center;
@@ -94,5 +101,9 @@
     }
     .category-link{
         font: 400 1.8vmax "Roboto";
+    }
+    .noProduct{
+        padding: 12vmax;
+        margin: 10vmax;
     }
 }

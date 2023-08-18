@@ -1,5 +1,5 @@
 footer{
-    margin-top: 24vmax;
+    margin-top: 17vmax;
     padding: 2vmax;
     background-color: rgb(34, 33, 33);
     color: white;
@@ -84,4 +84,11 @@ footer{
 }
 .rightFooter > div > a:hover {
     color: #eb4034;
+}
+@media screen and (max-width: 800px){
+    footer{
+        margin-top: 25vmax;
+        padding: 2vmax;
+        height: 35vmax;
+    }
 }

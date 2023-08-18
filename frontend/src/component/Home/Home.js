@@ -35,7 +35,7 @@ const Home = () => {
       {loading ? (<Loader />) : 
         (
           <Fragment>
-            <MetaData title="Ecommerce Site Project" />
+            <MetaData title="Game-Shop Ecommerce" />
             {/* <div className='banner'> */}
                 {/* <p>Welcome To Gameshop Ecommerce</p> */}
                 {/* <h1>Find Your Dream Games Here</h1> */}
