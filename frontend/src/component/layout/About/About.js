@@ -6,7 +6,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 
 const About = () => {
   const visitInstagram = () => {
-    window.location = "/";
+    window.location = "https://www.facebook.com/toriqul.mahal.56236/";
   };
   return (
     <div className="aboutSection">
